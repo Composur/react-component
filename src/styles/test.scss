@@ -1,0 +1,38 @@
+.head {
+  position: sticky;
+  top: 0;
+  background: chocolate;
+  border: 1px solid red;
+}
+.wrap-con {
+  height: 1500px;
+  border: 1px solid firebrick;
+  .wrap {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    background: cadetblue;
+    .item {
+      border: 1px solid red;
+      width: 50px;
+      height: 20px;
+      color: black;
+    }
+  }
+}
+
+.content {
+  height: 1000px;
+
+  .p {
+    position: sticky;
+    top: 20px;
+    background: lawngreen;
+  }
+}
+
+.sticky-container {
+  position: sticky;
+  top: 20px;
+}
