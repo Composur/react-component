@@ -5,11 +5,11 @@ import '@/styles/index.scss'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-// import Nav from '@/layout/Nav'
+import Nav from '@/layout/Nav'
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <Nav /> */}
+      <Nav />
       <App />
     </BrowserRouter>
   </React.StrictMode>,

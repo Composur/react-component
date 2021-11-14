@@ -6,7 +6,8 @@ const MainLayout: React.FC = (): JSX.Element => {
     <>
       <nav>
         <ul>
-          <li><Link to='/component'>组件预览</Link></li>
+          <li><Link to='/'>首页</Link></li>
+          <li><Link to='/components'>组件预览</Link></li>
           <li><Link to='/404'>404</Link></li>
         </ul>
       </nav>

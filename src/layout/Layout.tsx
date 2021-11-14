@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 const MainLayout: React.FC = (): JSX.Element => {
   return (
     <>
-      <nav>
+      {/* <nav>
         <ul>
           <li><Link to='/component'>组件预览</Link></li>
-          {/* <li><Link to='/404'>404</Link></li> */}
+          <li><Link to='/404'>404</Link></li>
         </ul>
-      </nav>
+      </nav> */}
+      <h1>MainLayout</h1>
     </>
   );
 };
