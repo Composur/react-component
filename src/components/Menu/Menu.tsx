@@ -23,9 +23,10 @@ interface MenuContextProps {
 // 定义 context
 export const MenuContext = createContext<MenuContextProps>({
   index: 0,
-  onSelect: (index) => { console.log(index) },
+  onSelect: (index) => index,
   // mode:
 })
+
 
 
 
@@ -50,7 +51,6 @@ const Menu: FC<MenuProps> = (props) => {
   }
 
   // 限制 children 的类型
-
   const MenuItemRender = () => {
     return React.Children.map(children, (child, idx) => {
       // 为了获取 type 这里需要把 child 断言成 FunctionComponentElement 实例
@@ -58,7 +58,7 @@ const Menu: FC<MenuProps> = (props) => {
       if (['MenuItem', 'SubMenuItem'].includes(childEle.type.displayName as string)) {
         return React.cloneElement(childEle, { index: idx });
       } else {
-        console.error('无法接受非 MenuItem 以外的组件')
+        console.error('无法接受非 MenuItem', 'SubMenuItem 以外的组件')
       }
     })
   }

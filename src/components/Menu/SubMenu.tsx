@@ -1,4 +1,4 @@
-import React, { FunctionComponentElement, useContext } from "react";
+import React, { FunctionComponentElement, MouseEvent, useContext, useState } from "react";
 import classNames from "classnames";
 import { MenuContext } from './Menu'
 import { MenuItemProps } from './MenuItem'
@@ -13,9 +13,11 @@ interface SubMenuProps {
 }
 
 const SubMenu: React.FC<SubMenuProps> = (props) => {
+  // 子菜单显隐状态
+  const [menuOpen, setMenuOpen] = useState(false)
   const MenuProps = useContext(MenuContext)
-  console.log(MenuProps)
-  const { children, style, className, index, title, mode } = props
+  const { children, style, className, index, title } = props
+  // console.log(MenuProps, index)
   // ul 的样式
   const classes = classNames('menu-item submenu-item', className, {
     'is-active': MenuProps.index === index,
@@ -34,8 +36,9 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
         console.error('无法接受非 MenuItem 以外的组件')
       }
     })
-    // 
-    const subMenuClasses = classNames('viking-submenu', 'menu-opened', className)
+    const subMenuClasses = classNames('viking-submenu', className, {
+      'menu-opened': menuOpen
+    })
 
     return (
       <ul className={subMenuClasses}>
@@ -44,12 +47,36 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
       </ul>
     )
   }
+  // 点击展开
+  const clickHandle = () => {
+    if (MenuProps.onSelect && typeof index === 'number') {
+      MenuProps.onSelect(index);
+      setMenuOpen(!menuOpen);
+    }
+  }
+
+
+  // 展开加个延时放置卡顿
+  let timer: any;
+  const mouseHander = (e: MouseEvent, open: boolean) => {
+    clearTimeout(timer);
+    e.preventDefault();
+    timer = setTimeout(() => {
+      setMenuOpen(open)
+    }, 300);
+  }
+
+  // hover 展开
+  const hoverHander = {
+    onMouseEnter: (e: MouseEvent) => mouseHander(e, true),
+    onMouseLeave: (e: MouseEvent) => mouseHander(e, false)
+  }
 
   // subMenu
   return (
     // 也是 Menu 组件的字节点
-    <li key={index} className={classes} style={style}>
-      <div className='submenu-title'>{title}</div>
+    <li key={index} className={classes} style={style} {...hoverHander}>
+      <div className='submenu-title' onClick={clickHandle}>{title}</div>
       {subMenuChild()}
     </li>
   )

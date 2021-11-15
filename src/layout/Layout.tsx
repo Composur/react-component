@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const MainLayout: React.FC = (): JSX.Element => {
   return (
