@@ -8,6 +8,7 @@ const Button: React.FC = (): JSX.Element => {
         <ul>
           <li><Link to='/components/btn'>Button</Link></li>
           <li><Link to='/components/menu'>Menu</Link></li>
+          <li><Link to='/components/icon'>Icon</Link></li>
         </ul>
       </nav>
     </>

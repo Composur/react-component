@@ -6,6 +6,7 @@ import ComView from './views/ComView';
 import Btn from './views/Btn'
 import MenuC from './views/Menu'
 import ComViewList from './views/ComViewList'
+import IconCom from '@/components/Icon'
 const App: React.FC = (): JSX.Element => {
 
   // const mainRoutes = {
@@ -28,6 +29,7 @@ const App: React.FC = (): JSX.Element => {
         <Route index element={<ComViewList />} />
         <Route path="btn" element={<Btn />} />
         <Route path="menu" element={<MenuC />} />
+        <Route path="icon" element={<IconCom />} />
       </Route>
       <Route path='*' element={<PageNotFoundView />} />
     </Routes>

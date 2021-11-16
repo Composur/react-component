@@ -16,7 +16,7 @@ function MenuC() {
       <Menu style={{ marginTop: '200px' }} mode='vertical' defaultIndex={1} onSelect={e => console.log(e)}>
         <MenuItem>1</MenuItem>
         <MenuItem>2</MenuItem>
-        <SubMenu title='submenu'>
+        <SubMenu title='submenu' defaultOpen={true}>
           <MenuItem >SubMenuItem1</MenuItem>
           <MenuItem >SubMenuItem2</MenuItem>
         </SubMenu>

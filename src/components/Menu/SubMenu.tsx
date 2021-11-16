@@ -10,13 +10,14 @@ interface SubMenuProps {
   className?: string,
   index?: number
   mode?: string
+  defaultOpen?: boolean
 }
 
 const SubMenu: React.FC<SubMenuProps> = (props) => {
+  const { children, style, className, index, title, defaultOpen } = props
   // 子菜单显隐状态
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(defaultOpen)
   const MenuProps = useContext(MenuContext)
-  const { children, style, className, index, title } = props
   // console.log(MenuProps, index)
   // ul 的样式
   const classes = classNames('menu-item submenu-item', className, {
