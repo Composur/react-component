@@ -6,7 +6,8 @@ import ComView from './views/ComView';
 import Btn from './views/Btn'
 import MenuC from './views/Menu'
 import ComViewList from './views/ComViewList'
-import IconCom from '@/components/Icon'
+import IconCom from '@/views/IconV'
+import TestCom from '@/Test'
 const App: React.FC = (): JSX.Element => {
 
   // const mainRoutes = {
@@ -25,6 +26,7 @@ const App: React.FC = (): JSX.Element => {
   return (
     <Routes>
       <Route path='/' element={<MainLayout />} />
+      <Route path='/test' element={<TestCom />} />
       <Route path='components' element={<ComView />}>
         <Route index element={<ComViewList />} />
         <Route path="btn" element={<Btn />} />

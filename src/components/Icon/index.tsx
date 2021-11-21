@@ -1,23 +1,26 @@
 import React, { FC } from "react";
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { faAd } from '@fortawesome/free-solid-svg-icons'
-import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// library.add(faAd, faCheckSquare, faCoffee)
-const Icon: FC = () => {
+import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
+import classNames from "classnames";
+
+export type ThemeProps = 'primary' | 'default' | 'danger' | 'link'
+
+export interface IconProps extends FontAwesomeIconProps {
+  theme?: ThemeProps
+}
+// 如果第三方库未导出组件的 props
+// type AwesomeIconProps = React.ComponentProps<typeof FontAwesomeIcon>
+// export interface IconProps extends AwesomeIconProps {
+//   theme?: ThemeProps
+// }
+
+const Icon: FC<IconProps> = (props) => {
+  const { className, theme, ...resetProps } = props
+  const classes = classNames('', className, {
+    [`icon-${theme}`]: theme
+  })
   return (
     <>
-      <FontAwesomeIcon icon={faCheckSquare} style={{ color: 'red', fontSize: '50px' }} />
-      <FontAwesomeIcon icon={faCheckSquare} style={{ color: 'red', fontSize: '50px' }} spin />
-      <FontAwesomeIcon icon={faCheckSquare} style={{ color: 'red', fontSize: '50px' }} pulse />
-      <FontAwesomeIcon icon={faCheckSquare} style={{ color: 'red', fontSize: '50px' }} border />
-      <FontAwesomeIcon icon={faCheckSquare} style={{ color: 'red', fontSize: '50px' }} pull="left" />
-      <FontAwesomeIcon icon={faCheckSquare} style={{ color: 'blue', fontSize: '50px' }} flip="horizontal" />
-      <FontAwesomeIcon icon={faCheckSquare} style={{ color: 'red', fontSize: '50px' }} flip="vertical" />
-      <FontAwesomeIcon icon={faCheckSquare} style={{ color: 'red', fontSize: '50px' }} flip="both" />
-      <FontAwesomeIcon icon={faCoffee} size={'6x'} />
-      <FontAwesomeIcon icon={faCoffee} pull="left" />
-      <FontAwesomeIcon icon={faCoffee} pull="right" />
+      <FontAwesomeIcon className={classes} {...resetProps} />
     </>
 
   )
