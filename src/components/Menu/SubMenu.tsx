@@ -2,7 +2,8 @@ import React, { FunctionComponentElement, MouseEvent, useContext, useState } fro
 import classNames from "classnames";
 import { MenuContext } from './Menu'
 import { MenuItemProps } from './MenuItem'
-
+import IconCom from '@/components/Icon'
+import Transition from '@/components/Transition'
 
 interface SubMenuProps {
   title: string,
@@ -31,6 +32,7 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
       // 得到 childEle
       // 得到submenuItem的displayname需断言成
       const childEle = child as FunctionComponentElement<MenuItemProps>
+      // 对 children 进行验证
       if (childEle.type.displayName === 'MenuItem') {
         return React.cloneElement(childEle, { index: idx + .1 })
       } else {
@@ -42,10 +44,16 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
     })
 
     return (
-      <ul className={subMenuClasses}>
-        {/* 渲染 li 即 menuItem */}
-        {childCom}
-      </ul>
+      <Transition
+        in={menuOpen}
+        timeout={300}
+        animation="zoom-in-top"
+      >
+        <ul className={subMenuClasses}>
+          {/* 渲染 li 即 menuItem */}
+          {childCom}
+        </ul>
+      </Transition>
     )
   }
   // 点击展开
@@ -77,7 +85,10 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
   return (
     // 也是 Menu 组件的字节点
     <li key={index} className={classes} style={style} {...hoverHander}>
-      <div className='submenu-title' onClick={clickHandle}>{title}</div>
+      <div className='submenu-title' onClick={clickHandle}>
+        {title}
+        <IconCom icon="angle-down" className="arrow-icon" />
+      </div>
       {subMenuChild()}
     </li>
   )
