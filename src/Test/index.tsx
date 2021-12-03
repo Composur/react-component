@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import useMouseMove from './hooks/mousemove';
 import useAjax from './hooks/ajax';
 import useLoading from './hooks/useLoading'
+import Transition from '@/components/Transition';
+import Button from '@/components/Button';
 const TestUseState: React.FC = () => {
   const [count, setCount] = useState(0)
   const [num, setnum] = useState(0)
@@ -46,7 +48,10 @@ const TestUseState: React.FC = () => {
       setTimeout(() => resolve(1000), 1500)
     })
   }
-
+  const [showTransitionContext, setTransitionContext] = useState(false)
+  const changeShowTransitionContext = () => {
+    setTransitionContext(!showTransitionContext)
+  }
   return (
     <>
       <div>{count}</div>
@@ -59,6 +64,18 @@ const TestUseState: React.FC = () => {
       <input type="text" ref={useref2} />
       <div>
         <h2>isLoading:{`${isLoading}`}</h2>
+      </div>
+      <div>
+        <div>测试Transition 点击下面的 tooggle </div>
+        <Button size={'sm'} btnType={'primary'} onClick={changeShowTransitionContext}>tooggle</Button>
+        <Transition in={showTransitionContext} timeout={300} animation={'zoom-in-top'}>
+          <div>
+            <div> 测试 Transition 内容</div>
+            <div> 测试 Transition 内容</div>
+            <div> 测试 Transition 内容</div>
+            <div> 测试 Transition 内容</div>
+          </div>
+        </Transition>
       </div>
     </>
   )
